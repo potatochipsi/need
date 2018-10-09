@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
+		</property>
+		<property name="url"
+			value="jdbc:sqlserver://localhost:1433;databaseName=dbNeed">
+		</property>
+		<property name="username" value="sa"></property>
+		<property name="password" value="123"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.SQLServerDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/need02/pojo/Company.hbm.xml</value>
+				<value>com/need02/pojo/Technology.hbm.xml</value>
+				<value>com/need02/pojo/Industry.hbm.xml</value>
+				<value>com/need02/pojo/Classify.hbm.xml</value>
+				</list>
+		</property></bean>
+		
+		<!-- 用户信息 -->
+		<bean id="userAct" class="com.need02.action.userAction" scope="prototype">
+			<property name="userService" ref="userService"></property>
+		</bean>
+	
+		<bean id="userService" class="com.need02.service.service">
+			<property name="dao" ref="dao"></property>
+		</bean>
+	
+		<bean id="dao" class="com.need02.dao.base">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>
+		
+		<!-- 技术信息 -->
+	 	<bean id="tAct" class="com.need02.action.TAction" scope="prototype">
+			<property name="tService" ref="tService"></property>
+		</bean>
+	
+	    <bean id="tService" class="com.need02.service.Tservice">
+			<property name="tBase" ref="tBase"></property>
+		</bean>
+	
+		<bean id="tBase" class="com.need02.dao.Tbase">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>
+		<!-- 三级连框 -->
+		
+		<bean id="classifyAction" class="com.need02.action.ClassifyAction">
+			<property name="classifyService" ref="classifyService"/>
+		</bean>
+
+		<bean id="classifyService" class="com.need02.service.ClassifyService">
+			<property name="classify" ref="classify"/>
+			
+		</bean>
+
+ 		<bean id="classify" class="com.need02.dao.ClassifyDAO">
+    		<property name="sessionFactory" ref="sessionFactory"/>
+    	</bean>
+		</beans>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<constant name="struts.objectFactory" value="spring" />
+<package name="ajax" extends="json-default">
+		<action name="Gm1" class="classifyAction" method="FirstGm">
+			<param name="root">first</param>
+			<result name="Success" type="json"></result>
+		</action>
+		<action name="Gm2" class="classifyAction" method="SecondGm">
+			<result name="Success" type="json"></result>
+		</action>
+		<action name="Gm3" class="classifyAction" method="ThirdGm">
+			<result name="Success" type="json"></result>
+		</action>
+		
+		<action name="Classify1" class="classifyAction" method="FirstSubject">
+			<result name="Success" type="json"></result>
+		</action>
+		<action name="Classify2" class="classifyAction" method="SecondSubject">
+			<result name="Success" type="json"></result>
+		</action>
+		<action name="Classify3" class="classifyAction" method="ThirdSubject">
+			<result name="Success" type="json"></result>
+		</action>
+	</package>
+	<package name="Need02"  extends="struts-default">
+		<!--  用户登录  -->
+		<action name="userAction" class="userAct" method="doLogin">
+			<result name="error">/jsp/error.jsp</result>
+			<result name="input">index.jsp</result>
+			<result name="success">/Company/main.jsp</result>
+			<result name="XHSUCCESS">/XSSH/main.jsp</result>
+		</action>
+		<action name="userQuery" class="userAct" method="doQuery2">
+			<result name="success">/Company/index.jsp</result>
+		</action>
+		
+		<!-- 企业人员操作 -->
+		
+		<!--  用户注册信息  -->
+		<action name="userRegister" class="userAct" method="doAdd">
+			<result name="error">/jsp/error.jsp</result>
+			<result name="success">../index.jsp</result>
+		</action>
+		<!--  用户修改注册信息  -->
+		<action name="userQueryEdit" class="userAct" method="doQuery2">
+			<result name="success">../Company/C_Edit.jsp</result>
+		</action>
+		<action name="userEdit" class="userAct" method="doEdit">
+			<result name="error">/jsp/error.jsp</result>
+			<result name="success">../../success.html</result>
+		</action>
+		<!--  用户修改注册密码  -->
+		<action name="userQueryEditM" class="userAct" method="doQuery2">
+			<result name="success">../Company/C_EditM.jsp</result>
+		</action>
+		<action name="userEditM" class="userAct" method="doEdit">
+			<result name="error">/jsp/error.jsp</result>
+			<result name="success">../../success.html</result>
+		</action>
+		
+		
+		<!--  用户添加技术信息  -->
+		<action name="tecAdd" class="tAct" method="doAdd">
+			<result name="error">/jsp/error.jsp</result>
+			<result name="success">../../success.html</result>
+		</action>
+		<!--  用户查看保存的技术信息  -->
+		<action name="tecQ1" class="tAct" method="doQuery1">
+			<result name="success">../Company/MyTec1.jsp</result>
+		</action>
+		<!--  用户查看提交的技术信息  -->
+		<action name="tecQ2" class="tAct" method="doQuery2">
+			<result name="success">../Company/MyTec2.jsp</result>
+		</action>
+		<!--  用户查看退回的技术信息  -->
+		<action name="tecQ3" class="tAct" method="doQuery3">
+			<result name="success">../Company/MyTec3.jsp</result>
+		</action>
+		<!--  用户查看详细的技术信息  -->
+		<action name="tecQxx" class="tAct" method="doQuery4">
+			<result name="success">../Company/MyTec.jsp</result>
+		</action>
+		<!--  用户提交技术信息  -->
+		<action name="tecTJ" class="tAct" method="doQuery4">
+			<result name="success">/Company/TJ.jsp</result>
+		</action>
+		<!-- 用户修改技术信息 -->
+		<action name="tecQuery2" class="tAct" method="doQuery4">
+			<result name="success">/Company/TecEdit.jsp</result>
+		</action>
+		<action name="tecEdit" class="tAct" method="doEdit">
+			<result name="success">../../success.html</result>
+		</action>
+		<!-- 用户删除技术信息 -->
+		<action name="tecDelete" class="tAct" method="doDelete">
+			<result name="success">../../success.html</result>
+		</action>
+		
+		<!-- 审核人员操作 -->
+		
+		
+		<!--  用户查看详细的技术信息  -->
+		<action name="XHtecQuery1" class="tAct" method="doQuery0">
+			<result name="success">../XSSH/SHTec.jsp</result>
+		</action>		
+		<action name="XHtecQxx" class="tAct" method="doQuery4">
+			<result name="success">../XSSH/MyTec.jsp</result>
+		</action>
+		<!-- 综合查询 -->
+		<action name="select" class="tAct" method="doSelect">
+			<result name="success">/XSSH/SHTec.jsp</result>
+		</action>
+		<!-- 形式审核显示 -->
+		<action name="XHtecQuery2" class="tAct" method="doQuery5">
+			<result name="success">/XSSH/SHTec1.jsp</result>
+		</action>
+		<!-- 形式审核修改 -->
+		<action name="XtecQuery" class="tAct" method="doQuery4">
+			<result name="success">../XSSH/SHTec1CK.jsp</result>
+		</action>
+		<action name="XtecQueryTG" class="tAct" method="doQuery4">
+			<result name="success">../XSSH/SHTec1CK1.jsp</result>
+		</action>
+		<action name="XtecQueryN" class="tAct" method="doQuery4">
+			<result name="success">../XSSH/SHTec1CK2.jsp</result>
+		</action>
+		<!-- 技术审核显示 -->
+		<action name="XHtecQuery3" class="tAct" method="doQuery6">
+			<result name="success">/XSSH/SHTec2.jsp</result>
+		</action>
+		<!-- 技术审核修改 -->
+		<action name="JtecQuery" class="tAct" method="doQuery4">
+			<result name="success">/XSSH/SHTec2CK.jsp</result>
+		</action>
+		<action name="JtecQueryTG" class="tAct" method="doQuery4">
+			<result name="success">../XSSH/SHTec2CK1.jsp</result>
+		</action>
+		<action name="JtecQueryN" class="tAct" method="doQuery4">
+			<result name="success">../XSSH/SHTec2CK2.jsp</result>
+		</action>
+		<!--  审核人员修改注册密码  -->
+		<action name="SHQueryEditM" class="userAct" method="doQuery2">
+			<result name="success">../XSSH/U_Edit.jsp</result>
+		</action>
+		<action name="SHEditM" class="userAct" method="doEdit">
+			<result name="error">/jsp/error.jsp</result>
+			<result name="success">../../success.html</result>
+		</action>
+		
+	</package>
+</struts>    
